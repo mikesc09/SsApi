@@ -30,11 +30,8 @@ class Comision extends Model
         'total_pasajes_internacionales',
         'nombre_subdepartamento',
         'organo_responsable_id',
-        'plantilla_personal_id'
-
-
-
-
+        'plantilla_personal_id',
+        'created_at'
     ];
 
     public $table = "comisiones";

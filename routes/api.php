@@ -24,3 +24,11 @@ Route::post('refresh-token',    'AutenticacionController@refreshToken');
 Route::resource('comisiones', 'ComisionController');
 
 Route::resource('permisos', 'PermisoController');
+
+Route::prefix('v1')->group(function(){
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('register', 'Api\AuthController@register');
+    Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('getUser', 'Api\AuthController@getUser');
+    });
+   });

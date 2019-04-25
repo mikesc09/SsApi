@@ -19,7 +19,7 @@ class CrearTablaComisiones extends Migration
             $table->string('motivo_comision');
             $table->string('no_comision');
             $table->string('no_memorandum');
-            $table->integer('usuario_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->boolean('es_vehiculo_oficial')->default(false);
             $table->decimal('total', 8,2);
             $table->string('tipo_comision', 5)->comment('para identificacion del tipo de comision y su flujo');
@@ -42,16 +42,14 @@ class CrearTablaComisiones extends Migration
 
         });
 
-        Schema::table('comisiones', function($table)
-        {
-            $table->foreign('usuario_id')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('cascade');
-        });
+       
 
         Schema::table('comisiones', function($table)
         {
             $table->foreign('organo_responsable_id')->references('id')->on('organos_responsables')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('plantilla_personal_id')->references('id')->on('plantillas_personal')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+           
         });
 
     }
